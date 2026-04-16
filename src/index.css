@@ -1,0 +1,32 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green: #63d282;
+  --green-dim: rgba(99, 210, 130, 0.15);
+  --green-border: rgba(99, 210, 130, 0.3);
+  --bg: #0a0a0f;
+  --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --text: #f0f0f0;
+  --muted: #8a9ab5;
+  --subtle: #4a5568;
+  --error: #f87171;
+  --red-dim: rgba(248,113,113,0.1);
+  --red-border: #f87171;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: linear-gradient(135deg, #0a0a0f 0%, #111827 50%, #0d1117 100%);
+  min-height: 100vh;
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+input, button, select, textarea { font-family: var(--font-body); }
+
+button { cursor: pointer; border: none; background: none; }
