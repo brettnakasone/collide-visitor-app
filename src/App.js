@@ -86,23 +86,13 @@ const GlobalStyle = () => (
     button { cursor: pointer; border: none; background: none; }
     .display { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; text-transform: uppercase; line-height: 0.92; }
     input:focus { outline: none; border-color: var(--red) !important; }
-    .ticker { white-space: nowrap; overflow: hidden; background: var(--red); padding: 9px 0; }
-    .ticker-inner {
-      display: inline-block;
-      animation: ticker 20s linear infinite;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream);
-    }
-    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
     .date-btn:hover:not([disabled]) { border-color: var(--red-border) !important; background: var(--red-dim) !important; }
     .pdf-link:hover { background: rgba(249,243,220,0.08) !important; }
   `}</style>
 );
 
-function Ticker() {
-  const t = 'COLLIDE YOUTH · C4 CHURCH · THURSDAYS 6–9PM · ANCHORED IN CHRIST · EMPOWERED BY HIS SPIRIT · CATALYSTS OF REVIVAL · ';
-  return <div className="ticker"><span className="ticker-inner">{t.repeat(6)}</span></div>;
-}
+
 
 const page = { minHeight:'100vh', display:'flex', flexDirection:'column', alignItems:'center', padding:'0 16px 80px' };
 const card = { background:'var(--surface)', border:'1px solid var(--border)', borderRadius:4, padding:'24px 20px', width:'100%', maxWidth:580, marginBottom:12 };
@@ -145,7 +135,7 @@ function ConfirmView({ name, visit1, visit2 }) {
   return (
     <div style={page}>
       <GlobalStyle />
-      <Ticker />
+      
       <div style={{ width:'100%', maxWidth:580, paddingTop:52, paddingBottom:32, textAlign:'center' }}>
         <Badge c="You're confirmed" />
         <h1 className="display" style={{ fontSize:'clamp(52px,12vw,88px)', color:'var(--cream)', marginBottom:8 }}>
@@ -193,7 +183,7 @@ function AdminLoginView({ onLogin, onBack }) {
   const attempt = () => pw === ADMIN_PASSWORD ? onLogin() : setErr('Incorrect password.');
   return (
     <div style={page}>
-      <GlobalStyle /><Ticker />
+      <GlobalStyle />
       <div style={{ width:'100%', maxWidth:580, paddingTop:52, paddingBottom:32, textAlign:'center' }}>
         <Badge c="Admin Access" />
         <h1 className="display" style={{ fontSize:72, color:'var(--cream)' }}>SCHEDULE<br /><span style={{ color:'var(--red)' }}>MANAGER</span></h1>
@@ -214,7 +204,7 @@ function AdminView({ allThursdays, blockedDates, onToggle, onBack }) {
   const group = groups[month];
   return (
     <div style={page}>
-      <GlobalStyle /><Ticker />
+      <GlobalStyle />
       <div style={{ width:'100%', maxWidth:580, paddingTop:52, paddingBottom:32, textAlign:'center' }}>
         <Badge c="Admin Panel" />
         <h1 className="display" style={{ fontSize:72, color:'var(--cream)' }}>MANAGE<br /><span style={{ color:'var(--red)' }}>THURSDAYS</span></h1>
@@ -294,10 +284,10 @@ export default function App() {
   return (
     <div style={page}>
       <GlobalStyle />
-      <Ticker />
+      
 
       <div style={{ width:'100%', maxWidth:580, paddingTop:48, paddingBottom:28, textAlign:'center' }}>
-        <Badge c="C4 Youth · Collide" />
+        <Badge c="Collide Student Ministries" />
         <h1 className="display" style={{ fontSize:'clamp(52px,13vw,100px)', color:'var(--cream)' }}>
           PICK YOUR<br /><span style={{ color:'var(--red)' }}>TWO THURSDAYS</span>
         </h1>
