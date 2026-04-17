@@ -137,7 +137,10 @@ function ConfirmView({ name, visit1, visit2 }) {
       <GlobalStyle />
       
       <div style={{ width:'100%', maxWidth:580, paddingTop:52, paddingBottom:32, textAlign:'center' }}>
-        <Badge c="You're Confirmed!" />
+        <img src="/logo-stamp.jpg" alt="Collide" style={{ width:110, height:'auto', marginBottom:20, opacity:0.85 }} />
+        <div style={{ display:'block' }}>
+          <Badge c="You're Confirmed!" />
+        </div>
         <h1 className="display" style={{ fontSize:'clamp(52px,12vw,88px)', color:'var(--text)', marginBottom:8 }}>
           SEE YOU<br /><span style={{ color:'var(--secondary)' }}>THURSDAY</span>
         </h1>
@@ -294,7 +297,10 @@ export default function App() {
       
 
       <div style={{ width:'100%', maxWidth:580, paddingTop:48, paddingBottom:28, textAlign:'center' }}>
-        <Badge c="Collide Student Ministries" />
+        <img src="/logo-globe.jpg" alt="Collide" style={{ width:90, height:'auto', marginBottom:20, opacity:0.9 }} />
+        <div style={{ display:'block' }}>
+          <Badge c="Collide Student Ministries" />
+        </div>
         <h1 className="display" style={{ fontSize:'clamp(52px,13vw,100px)', color:'var(--text)' }}>
           PICK YOUR<br /><span style={{ color:'var(--secondary)' }}>TWO THURSDAYS</span>
         </h1>
