@@ -5,7 +5,7 @@ const FORMSPREE_URL = 'https://formspree.io/f/xlgagqjo';
 const ADMIN_PASSWORD = 'CollideHi';
 const NOTION_DB_URL = 'https://www.notion.so/f727bf80465b4d1db688538649e3af73';
 const VISITOR_POLICY_URL = 'https://drive.google.com/file/d/1uJbXufnGtKpwEfo1VfLyU_BO8DkIiF2j/view?usp=sharing';
-const DRESS_CODE_URL = null; // Combined into Visitor Policy PDF
+const CULTURE_CARD_URL = 'https://drive.google.com/file/d/1wre8RlPbFTijUhBRjKTj7AqI3GkvTQjX/view?usp=sharing';
 const STORAGE_KEY = 'collide_blocked_dates';
 
 const HOLIDAY_THURSDAYS = [
@@ -65,30 +65,30 @@ const GlobalStyle = () => (
     @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap');
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --red: #ED3411;
-      --red-dim: rgba(237,52,17,0.12);
-      --red-border: rgba(237,52,17,0.35);
-      --cream: #F9F3DC;
-      --black: #18181A;
-      --surface: rgba(249,243,220,0.04);
-      --border: rgba(249,243,220,0.1);
-      --muted: rgba(249,243,220,0.5);
-      --subtle: rgba(249,243,220,0.2);
+      --primary: #F9F3DC;
+      --secondary: #667761;
+      --secondary-dim: rgba(102,119,97,0.15);
+      --secondary-border: rgba(102,119,97,0.35);
+      --text: #18181A;
+      --surface: rgba(24,24,26,0.06);
+      --border: rgba(24,24,26,0.12);
+      --muted: rgba(24,24,26,0.5);
+      --subtle: rgba(24,24,26,0.25);
     }
     body {
-      background: var(--black);
+      background: var(--primary);
       min-height: 100vh;
-      color: var(--cream);
+      color: var(--text);
       font-family: 'Barlow', sans-serif;
       -webkit-font-smoothing: antialiased;
     }
     input, button { font-family: 'Barlow', sans-serif; }
     button { cursor: pointer; border: none; background: none; }
     .display { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; text-transform: uppercase; line-height: 0.92; }
-    input:focus { outline: none; border-color: var(--red) !important; }
+    input:focus { outline: none; border-color: var(--secondary) !important; }
 
-    .date-btn:hover:not([disabled]) { border-color: var(--red-border) !important; background: var(--red-dim) !important; }
-    .pdf-link:hover { background: rgba(249,243,220,0.08) !important; }
+    .date-btn:hover:not([disabled]) { border-color: var(--secondary-border) !important; background: var(--secondary-dim) !important; }
+    .pdf-link:hover { background: rgba(24,24,26,0.08) !important; }
   `}</style>
 );
 
@@ -96,24 +96,24 @@ const GlobalStyle = () => (
 
 const page = { minHeight:'100vh', display:'flex', flexDirection:'column', alignItems:'center', padding:'0 16px 80px' };
 const card = { background:'var(--surface)', border:'1px solid var(--border)', borderRadius:4, padding:'24px 20px', width:'100%', maxWidth:580, marginBottom:12 };
-const secLabel = { fontSize:10, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--red)', marginBottom:6 };
+const secLabel = { fontSize:10, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--secondary)', marginBottom:6 };
 
-function Badge({ c }) { return <span style={{ display:'inline-block', background:'var(--red-dim)', border:'1px solid var(--red-border)', color:'var(--red)', fontSize:11, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', padding:'4px 12px', borderRadius:2, marginBottom:16 }}>{c}</span>; }
+function Badge({ c }) { return <span style={{ display:'inline-block', background:'var(--secondary-dim)', border:'1px solid var(--secondary-border)', color:'var(--secondary)', fontSize:11, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', padding:'4px 12px', borderRadius:2, marginBottom:16 }}>{c}</span>; }
 function SL({ c }) { return <div style={secLabel}>{c}</div>; }
 function Lbl({ c }) { return <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--muted)', marginBottom:8 }}>{c}</label>; }
 
 function Inp({ error, ...p }) {
   return <>
-    <input style={{ width:'100%', background:'rgba(249,243,220,0.06)', border:`1px solid ${error?'var(--red)':'rgba(249,243,220,0.12)'}`, borderRadius:4, padding:'12px 14px', fontSize:15, color:'var(--cream)', outline:'none', transition:'border-color 0.2s', boxSizing:'border-box' }} {...p} />
-    {error && <div style={{ fontSize:12, color:'var(--red)', marginTop:6 }}>{error}</div>}
+    <input style={{ width:'100%', background:'rgba(24,24,26,0.06)', border:`1px solid ${error?'var(--secondary)':'rgba(24,24,26,0.12)'}`, borderRadius:4, padding:'12px 14px', fontSize:15, color:'var(--text)', outline:'none', transition:'border-color 0.2s', boxSizing:'border-box' }} {...p} />
+    {error && <div style={{ fontSize:12, color:'var(--secondary)', marginTop:6 }}>{error}</div>}
   </>;
 }
 
 function PBtn({ children, style, ...p }) {
-  return <button style={{ width:'100%', padding:'15px 24px', borderRadius:4, border:'none', background:'var(--red)', color:'var(--cream)', fontSize:15, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', cursor:'pointer', transition:'opacity 0.2s', marginTop:8, fontFamily:'Barlow Condensed, sans-serif', ...style }} {...p}>{children}</button>;
+  return <button style={{ width:'100%', padding:'15px 24px', borderRadius:4, border:'none', background:'var(--secondary)', color:'var(--primary)', fontSize:15, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', cursor:'pointer', transition:'opacity 0.2s', marginTop:8, fontFamily:'Barlow Condensed, sans-serif', ...style }} {...p}>{children}</button>;
 }
 function SBtn({ children, style, ...p }) {
-  return <button style={{ background:'transparent', border:'1px solid rgba(249,243,220,0.15)', color:'var(--muted)', fontSize:11, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', padding:'9px 16px', borderRadius:4, cursor:'pointer', transition:'all 0.15s', ...style }} {...p}>{children}</button>;
+  return <button style={{ background:'transparent', border:'1px solid rgba(24,24,26,0.15)', color:'var(--muted)', fontSize:11, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', padding:'9px 16px', borderRadius:4, cursor:'pointer', transition:'all 0.15s', ...style }} {...p}>{children}</button>;
 }
 
 function DateBtn({ date, selected, maxed, onToggle }) {
@@ -121,12 +121,12 @@ function DateBtn({ date, selected, maxed, onToggle }) {
   return (
     <button className="date-btn" onClick={()=>!maxed&&onToggle(ds)} disabled={maxed}
       style={{ padding:'12px', borderRadius:4, textAlign:'left', lineHeight:1.4, transition:'all 0.15s', cursor:maxed?'not-allowed':'pointer',
-        border: selected?'1.5px solid var(--red)':'1px solid rgba(249,243,220,0.1)',
-        background: selected?'var(--red-dim)':'rgba(249,243,220,0.03)',
-        color: selected?'var(--red)':'var(--cream)', opacity:maxed?0.4:1 }}>
-      <div style={{ fontSize:9, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:4, color:selected?'var(--red)':'var(--muted)' }}>{selected?'✓ SELECTED':'THURSDAY'}</div>
+        border: selected?'1.5px solid var(--secondary)':'1px solid rgba(24,24,26,0.1)',
+        background: selected?'var(--secondary-dim)':'rgba(24,24,26,0.03)',
+        color: selected?'var(--secondary)':'var(--primary)', opacity:maxed?0.4:1 }}>
+      <div style={{ fontSize:9, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:4, color:selected?'var(--secondary)':'var(--muted)' }}>{selected?'✓ SELECTED':'THURSDAY'}</div>
       <div style={{ fontFamily:'Barlow Condensed, sans-serif', fontSize:20, fontWeight:800, textTransform:'uppercase' }}>{date.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</div>
-      <div style={{ fontSize:11, color:selected?'rgba(237,52,17,0.6)':'var(--subtle)', marginTop:2 }}>6:00 – 9:00 PM</div>
+      <div style={{ fontSize:11, color:selected?'rgba(102,119,97,0.6)':'var(--subtle)', marginTop:2 }}>6:00 – 9:00 PM</div>
     </button>
   );
 }
@@ -137,9 +137,9 @@ function ConfirmView({ name, visit1, visit2 }) {
       <GlobalStyle />
       
       <div style={{ width:'100%', maxWidth:580, paddingTop:52, paddingBottom:32, textAlign:'center' }}>
-        <Badge c="You're confirmed" />
-        <h1 className="display" style={{ fontSize:'clamp(52px,12vw,88px)', color:'var(--cream)', marginBottom:8 }}>
-          SEE YOU<br /><span style={{ color:'var(--red)' }}>THURSDAY</span>
+        <Badge c="You're Confirmed!" />
+        <h1 className="display" style={{ fontSize:'clamp(52px,12vw,88px)', color:'var(--text)', marginBottom:8 }}>
+          SEE YOU<br /><span style={{ color:'var(--secondary)' }}>THURSDAY</span>
         </h1>
         <p style={{ fontSize:15, color:'var(--muted)', lineHeight:1.65, maxWidth:380, margin:'12px auto 0' }}>
           Hey {name.split(' ')[0]}! Pastor Brett will follow up soon. Here's what you're locked in for:
@@ -149,29 +149,36 @@ function ConfirmView({ name, visit1, visit2 }) {
         <SL c="Your Two Visits" />
         <p style={{ fontSize:13, color:'var(--muted)', margin:'4px 0 16px', lineHeight:1.55 }}>Show up at 6:00 PM for the team brief before students arrive.</p>
         {[visit1, visit2].map((v, i) => (
-          <div key={i} style={{ display:'flex', alignItems:'center', gap:14, padding:'14px 0', borderBottom:i===0?'1px solid rgba(249,243,220,0.08)':'none' }}>
-            <div style={{ width:32, height:32, borderRadius:4, background:'var(--red-dim)', border:'1px solid var(--red-border)', display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'Barlow Condensed, sans-serif', fontSize:16, fontWeight:900, color:'var(--red)', flexShrink:0 }}>{i+1}</div>
+          <div key={i} style={{ display:'flex', alignItems:'center', gap:14, padding:'14px 0', borderBottom:i===0?'1px solid rgba(24,24,26,0.08)':'none' }}>
+            <div style={{ width:32, height:32, borderRadius:4, background:'var(--secondary-dim)', border:'1px solid var(--secondary-border)', display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'Barlow Condensed, sans-serif', fontSize:16, fontWeight:900, color:'var(--secondary)', flexShrink:0 }}>{i+1}</div>
             <div style={{ fontFamily:'Barlow Condensed, sans-serif', fontSize:18, fontWeight:800, textTransform:'uppercase', letterSpacing:'0.02em' }}>{v}</div>
           </div>
         ))}
-        <div style={{ marginTop:16, padding:'12px 14px', background:'var(--red-dim)', border:'1px solid var(--red-border)', borderRadius:4 }}>
-          <div style={{ fontSize:10, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--red)', marginBottom:3 }}>📍 Collide Youth · C4 Church</div>
+        <div style={{ marginTop:16, padding:'12px 14px', background:'var(--secondary-dim)', border:'1px solid var(--secondary-border)', borderRadius:4 }}>
+          <div style={{ fontSize:10, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--secondary)', marginBottom:3 }}>📍 C4 Church</div>
           <div style={{ fontSize:13, color:'var(--muted)' }}>Every Thursday · 6:00 PM – 9:00 PM</div>
         </div>
       </div>
       <div style={card}>
         <SL c="Before You Come" />
-        <p style={{ fontSize:13, color:'var(--muted)', margin:'4px 0 16px', lineHeight:1.6 }}>Please read our Visitor Policy and Dress Code before your first visit.</p>
-        <a href={VISITOR_POLICY_URL} target="_blank" rel="noreferrer" className="pdf-link"
-          style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'13px 15px', background:'rgba(249,243,220,0.04)', border:'1px solid rgba(249,243,220,0.1)', borderRadius:4, color:'var(--cream)', textDecoration:'none', fontFamily:'Barlow Condensed, sans-serif', fontSize:16, fontWeight:700, textTransform:'uppercase', letterSpacing:'0.04em', transition:'background 0.15s' }}>
-          📎 Visitor Policy + Dress Code
-          <span style={{ fontSize:11, color:'var(--muted)', fontWeight:500, textTransform:'none', fontFamily:'Barlow, sans-serif' }}>View PDF →</span>
-        </a>
+        <p style={{ fontSize:13, color:'var(--muted)', margin:'4px 0 16px', lineHeight:1.6 }}>Please read through these before your first visit.</p>
+        <div style={{ display:'grid', gap:8 }}>
+          {[
+            { label:'Visitor Policy + Dress Code', url: VISITOR_POLICY_URL },
+            { label:'Collide Culture Card', url: CULTURE_CARD_URL },
+          ].map(({ label, url }) => (
+            <a key={label} href={url} target="_blank" rel="noreferrer" className="pdf-link"
+              style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'13px 15px', background:'rgba(24,24,26,0.04)', border:'1px solid rgba(24,24,26,0.1)', borderRadius:4, color:'var(--text)', textDecoration:'none', fontFamily:'Barlow Condensed, sans-serif', fontSize:16, fontWeight:700, textTransform:'uppercase', letterSpacing:'0.04em', transition:'background 0.15s' }}>
+              📎 {label}
+              <span style={{ fontSize:11, color:'var(--muted)', fontWeight:500, textTransform:'none', fontFamily:'Barlow, sans-serif' }}>View PDF →</span>
+            </a>
+          ))}
+        </div>
       </div>
       <div style={{ ...card, textAlign:'center', borderColor:'transparent' }}>
         <div style={{ fontSize:13, color:'var(--muted)', lineHeight:1.8 }}>
           Questions? Reach out anytime.<br />
-          <a href="mailto:brett@c4.church" style={{ color:'var(--red)', textDecoration:'none', fontWeight:700 }}>brett@c4.church</a>
+          <a href="mailto:brett@c4.church" style={{ color:'var(--secondary)', textDecoration:'none', fontWeight:700 }}>brett@c4.church</a>
         </div>
       </div>
     </div>
@@ -186,7 +193,7 @@ function AdminLoginView({ onLogin, onBack }) {
       <GlobalStyle />
       <div style={{ width:'100%', maxWidth:580, paddingTop:52, paddingBottom:32, textAlign:'center' }}>
         <Badge c="Admin Access" />
-        <h1 className="display" style={{ fontSize:72, color:'var(--cream)' }}>SCHEDULE<br /><span style={{ color:'var(--red)' }}>MANAGER</span></h1>
+        <h1 className="display" style={{ fontSize:72, color:'var(--text)' }}>SCHEDULE<br /><span style={{ color:'var(--secondary)' }}>MANAGER</span></h1>
       </div>
       <div style={card}>
         <Lbl c="Password" />
@@ -207,7 +214,7 @@ function AdminView({ allThursdays, blockedDates, onToggle, onBack }) {
       <GlobalStyle />
       <div style={{ width:'100%', maxWidth:580, paddingTop:52, paddingBottom:32, textAlign:'center' }}>
         <Badge c="Admin Panel" />
-        <h1 className="display" style={{ fontSize:72, color:'var(--cream)' }}>MANAGE<br /><span style={{ color:'var(--red)' }}>THURSDAYS</span></h1>
+        <h1 className="display" style={{ fontSize:72, color:'var(--text)' }}>MANAGE<br /><span style={{ color:'var(--secondary)' }}>THURSDAYS</span></h1>
         <p style={{ fontSize:14, color:'var(--muted)', marginTop:12 }}>Toggle dates to block or open them. Changes save instantly.</p>
       </div>
       <div style={card}>
@@ -221,19 +228,19 @@ function AdminView({ allThursdays, blockedDates, onToggle, onBack }) {
             const ds = d.toISOString().split('T')[0];
             const isBlocked = blockedDates.includes(ds);
             return (
-              <button key={ds} onClick={()=>onToggle(ds)} style={{ padding:'12px', borderRadius:4, textAlign:'left', cursor:'pointer', border:isBlocked?'1.5px solid rgba(237,52,17,0.5)':'1.5px solid rgba(249,243,220,0.12)', background:isBlocked?'rgba(237,52,17,0.1)':'rgba(249,243,220,0.03)', color:isBlocked?'var(--red)':'var(--cream)', transition:'all 0.15s' }}>
+              <button key={ds} onClick={()=>onToggle(ds)} style={{ padding:'12px', borderRadius:4, textAlign:'left', cursor:'pointer', border:isBlocked?'1.5px solid rgba(102,119,97,0.5)':'1.5px solid rgba(24,24,26,0.12)', background:isBlocked?'var(--secondary-dim)':'rgba(24,24,26,0.03)', color:isBlocked?'var(--secondary)':'var(--primary)', transition:'all 0.15s' }}>
                 <div style={{ fontSize:9, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:4 }}>{isBlocked?'🚫 BLOCKED':'✅ OPEN'}</div>
                 <div style={{ fontFamily:'Barlow Condensed, sans-serif', fontSize:16, fontWeight:800, textTransform:'uppercase' }}>{fmtShort(d)}</div>
               </button>
             );
           })}
         </div>
-        <div style={{ height:1, background:'rgba(249,243,220,0.07)', margin:'16px 0' }} />
+        <div style={{ height:1, background:'rgba(24,24,26,0.07)', margin:'16px 0' }} />
         <div style={{ fontSize:12, color:'var(--muted)', marginBottom:14, lineHeight:1.7 }}>
-          <strong style={{ color:'var(--cream)' }}>Blocked: </strong>
+          <strong style={{ color:'var(--primary)' }}>Blocked: </strong>
           {blockedDates.length===0?'None':blockedDates.sort().map(ds=>fmtShort(new Date(ds+'T12:00:00'))).join(', ')}
         </div>
-        <a href={NOTION_DB_URL} target="_blank" rel="noreferrer" style={{ display:'block', fontSize:11, color:'var(--red)', fontWeight:700, textDecoration:'none', marginBottom:16, letterSpacing:'0.08em', textTransform:'uppercase' }}>📊 View Notion Submissions →</a>
+        <a href={NOTION_DB_URL} target="_blank" rel="noreferrer" style={{ display:'block', fontSize:11, color:'var(--secondary)', fontWeight:700, textDecoration:'none', marginBottom:16, letterSpacing:'0.08em', textTransform:'uppercase' }}>📊 View Notion Submissions →</a>
         <SBtn onClick={onBack}>← Back to Visitor Form</SBtn>
       </div>
     </div>
@@ -288,8 +295,8 @@ export default function App() {
 
       <div style={{ width:'100%', maxWidth:580, paddingTop:48, paddingBottom:28, textAlign:'center' }}>
         <Badge c="Collide Student Ministries" />
-        <h1 className="display" style={{ fontSize:'clamp(52px,13vw,100px)', color:'var(--cream)' }}>
-          PICK YOUR<br /><span style={{ color:'var(--red)' }}>TWO THURSDAYS</span>
+        <h1 className="display" style={{ fontSize:'clamp(52px,13vw,100px)', color:'var(--primary)' }}>
+          PICK YOUR<br /><span style={{ color:'var(--secondary)' }}>TWO THURSDAYS</span>
         </h1>
         <p style={{ fontSize:15, color:'var(--muted)', lineHeight:1.65, maxWidth:380, margin:'16px auto 0' }}>
           Ready to check out Collide? Select two Thursday nights to visit. We meet 6–9 PM and we can't wait to have you.
@@ -311,7 +318,7 @@ export default function App() {
       <div style={card}>
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:4 }}>
           <SL c="Choose 2 Thursdays"/>
-          <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.08em', color:selectedDates.length===2?'var(--red)':'var(--muted)' }}>{selectedDates.length}/2</div>
+          <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.08em', color:selectedDates.length===2?'var(--secondary)':'var(--muted)' }}>{selectedDates.length}/2</div>
         </div>
         <p style={{ fontSize:13, color:'var(--muted)', margin:'4px 0 16px', lineHeight:1.55 }}>Each visit runs 6:00–9:00 PM. Pick any two Thursdays that work for you.</p>
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:14 }}>
@@ -327,12 +334,12 @@ export default function App() {
               onToggle={toggleDate}/>
           ))}
         </div>
-        {errors.dates && <div style={{ fontSize:12, color:'var(--red)', marginTop:4 }}>{errors.dates}</div>}
+        {errors.dates && <div style={{ fontSize:12, color:'var(--secondary)', marginTop:4 }}>{errors.dates}</div>}
         {sortedSelected.length>0&&(
-          <div style={{ marginTop:12, padding:'13px 14px', background:'var(--red-dim)', border:'1px solid var(--red-border)', borderRadius:4 }}>
-            <div style={{ fontSize:10, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--red)', marginBottom:8 }}>Your Visits</div>
+          <div style={{ marginTop:12, padding:'13px 14px', background:'var(--secondary-dim)', border:'1px solid var(--secondary-border)', borderRadius:4 }}>
+            <div style={{ fontSize:10, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--secondary)', marginBottom:8 }}>Your Visits</div>
             {sortedSelected.map((ds,i)=>(
-              <div key={ds} style={{ fontFamily:'Barlow Condensed, sans-serif', fontSize:16, fontWeight:700, textTransform:'uppercase', color:'var(--cream)', padding:'2px 0', letterSpacing:'0.02em' }}>
+              <div key={ds} style={{ fontFamily:'Barlow Condensed, sans-serif', fontSize:16, fontWeight:700, textTransform:'uppercase', color:'var(--primary)', padding:'2px 0', letterSpacing:'0.02em' }}>
                 {i+1}. {fmt(new Date(ds+'T12:00:00'))}
               </div>
             ))}
@@ -341,13 +348,13 @@ export default function App() {
       </div>
 
       <div style={{ width:'100%', maxWidth:580 }}>
-        {errors.submit&&<div style={{ fontSize:12, color:'var(--red)', marginBottom:10, textAlign:'center' }}>{errors.submit}</div>}
+        {errors.submit&&<div style={{ fontSize:12, color:'var(--secondary)', marginBottom:10, textAlign:'center' }}>{errors.submit}</div>}
         <PBtn onClick={handleSubmit} disabled={submitting} style={{ opacity:submitting?0.7:1, fontSize:16 }}>
           {submitting?'Submitting...': "I'm In — Submit My Dates →"}
         </PBtn>
       </div>
 
-      <button onClick={()=>setView('adminLogin')} style={{ background:'transparent', border:'none', color:'rgba(249,243,220,0.08)', fontSize:11, cursor:'pointer', marginTop:28, letterSpacing:'0.06em' }}>admin</button>
+      <button onClick={()=>setView('adminLogin')} style={{ background:'transparent', border:'none', color:'rgba(24,24,26,0.08)', fontSize:11, cursor:'pointer', marginTop:28, letterSpacing:'0.06em' }}>admin</button>
     </div>
   );
 }
