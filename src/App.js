@@ -123,7 +123,7 @@ function DateBtn({ date, selected, maxed, onToggle }) {
       style={{ padding:'12px', borderRadius:4, textAlign:'left', lineHeight:1.4, transition:'all 0.15s', cursor:maxed?'not-allowed':'pointer',
         border: selected?'1.5px solid var(--secondary)':'1px solid rgba(24,24,26,0.1)',
         background: selected?'var(--secondary-dim)':'rgba(24,24,26,0.03)',
-        color: selected?'var(--secondary)':'var(--primary)', opacity:maxed?0.4:1 }}>
+        color: selected?'var(--secondary)':'var(--text)', opacity:maxed?0.4:1 }}>
       <div style={{ fontSize:9, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:4, color:selected?'var(--secondary)':'var(--muted)' }}>{selected?'✓ SELECTED':'THURSDAY'}</div>
       <div style={{ fontFamily:'Barlow Condensed, sans-serif', fontSize:20, fontWeight:800, textTransform:'uppercase' }}>{date.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</div>
       <div style={{ fontSize:11, color:selected?'rgba(102,119,97,0.6)':'var(--subtle)', marginTop:2 }}>6:00 – 9:00 PM</div>
@@ -228,7 +228,7 @@ function AdminView({ allThursdays, blockedDates, onToggle, onBack }) {
             const ds = d.toISOString().split('T')[0];
             const isBlocked = blockedDates.includes(ds);
             return (
-              <button key={ds} onClick={()=>onToggle(ds)} style={{ padding:'12px', borderRadius:4, textAlign:'left', cursor:'pointer', border:isBlocked?'1.5px solid rgba(102,119,97,0.5)':'1.5px solid rgba(24,24,26,0.12)', background:isBlocked?'var(--secondary-dim)':'rgba(24,24,26,0.03)', color:isBlocked?'var(--secondary)':'var(--primary)', transition:'all 0.15s' }}>
+              <button key={ds} onClick={()=>onToggle(ds)} style={{ padding:'12px', borderRadius:4, textAlign:'left', cursor:'pointer', border:isBlocked?'1.5px solid rgba(102,119,97,0.5)':'1.5px solid rgba(24,24,26,0.12)', background:isBlocked?'var(--secondary-dim)':'rgba(24,24,26,0.03)', color:isBlocked?'var(--secondary)':'var(--text)', transition:'all 0.15s' }}>
                 <div style={{ fontSize:9, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:4 }}>{isBlocked?'🚫 BLOCKED':'✅ OPEN'}</div>
                 <div style={{ fontFamily:'Barlow Condensed, sans-serif', fontSize:16, fontWeight:800, textTransform:'uppercase' }}>{fmtShort(d)}</div>
               </button>
@@ -237,7 +237,7 @@ function AdminView({ allThursdays, blockedDates, onToggle, onBack }) {
         </div>
         <div style={{ height:1, background:'rgba(24,24,26,0.07)', margin:'16px 0' }} />
         <div style={{ fontSize:12, color:'var(--muted)', marginBottom:14, lineHeight:1.7 }}>
-          <strong style={{ color:'var(--primary)' }}>Blocked: </strong>
+          <strong style={{ color:'var(--text)' }}>Blocked: </strong>
           {blockedDates.length===0?'None':blockedDates.sort().map(ds=>fmtShort(new Date(ds+'T12:00:00'))).join(', ')}
         </div>
         <a href={NOTION_DB_URL} target="_blank" rel="noreferrer" style={{ display:'block', fontSize:11, color:'var(--secondary)', fontWeight:700, textDecoration:'none', marginBottom:16, letterSpacing:'0.08em', textTransform:'uppercase' }}>📊 View Notion Submissions →</a>
@@ -295,7 +295,7 @@ export default function App() {
 
       <div style={{ width:'100%', maxWidth:580, paddingTop:48, paddingBottom:28, textAlign:'center' }}>
         <Badge c="Collide Student Ministries" />
-        <h1 className="display" style={{ fontSize:'clamp(52px,13vw,100px)', color:'var(--primary)' }}>
+        <h1 className="display" style={{ fontSize:'clamp(52px,13vw,100px)', color:'var(--text)' }}>
           PICK YOUR<br /><span style={{ color:'var(--secondary)' }}>TWO THURSDAYS</span>
         </h1>
         <p style={{ fontSize:15, color:'var(--muted)', lineHeight:1.65, maxWidth:380, margin:'16px auto 0' }}>
@@ -339,7 +339,7 @@ export default function App() {
           <div style={{ marginTop:12, padding:'13px 14px', background:'var(--secondary-dim)', border:'1px solid var(--secondary-border)', borderRadius:4 }}>
             <div style={{ fontSize:10, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--secondary)', marginBottom:8 }}>Your Visits</div>
             {sortedSelected.map((ds,i)=>(
-              <div key={ds} style={{ fontFamily:'Barlow Condensed, sans-serif', fontSize:16, fontWeight:700, textTransform:'uppercase', color:'var(--primary)', padding:'2px 0', letterSpacing:'0.02em' }}>
+              <div key={ds} style={{ fontFamily:'Barlow Condensed, sans-serif', fontSize:16, fontWeight:700, textTransform:'uppercase', color:'var(--text)', padding:'2px 0', letterSpacing:'0.02em' }}>
                 {i+1}. {fmt(new Date(ds+'T12:00:00'))}
               </div>
             ))}
